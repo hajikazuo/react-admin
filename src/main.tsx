@@ -4,17 +4,20 @@ import { BrowserRouter } from 'react-router-dom'
 import AppRoutes from './routes/Routes.tsx'
 import { AppThemeProvider } from './shared/contexts/ThemeContext.tsx'
 import { SideMenu } from './shared/components/index.ts'
+import { DrawerProvider } from './shared/contexts/DrawerContext.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <AppThemeProvider>
-      <BrowserRouter>
+      <DrawerProvider>
+        <BrowserRouter>
 
-        <SideMenu>
-          <AppRoutes />
-        </SideMenu>
+          <SideMenu>
+            <AppRoutes />
+          </SideMenu>
 
-      </BrowserRouter>
+        </BrowserRouter>
+      </DrawerProvider>
     </AppThemeProvider>
   </StrictMode>
 )
