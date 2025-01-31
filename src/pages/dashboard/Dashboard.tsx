@@ -1,4 +1,4 @@
-import { ListingTools } from "../../shared/components";
+import { DetailTools } from "../../shared/components";
 import { Layout } from "../../shared/layout/Layout";
 
 export const Dashboard = () => {
@@ -6,8 +6,8 @@ export const Dashboard = () => {
         <Layout
             title="Home Page"
             toolbar={(
-                <ListingTools
-                    showInputSearch
+                <DetailTools
+                    
                 />
             )}
         >
