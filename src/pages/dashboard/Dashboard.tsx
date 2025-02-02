@@ -6,7 +6,7 @@ export const Dashboard = () => {
         <Layout
             title="Home Page"
             toolbar={(
-                <DetailTools
+                <DetailTools showSaveAndCloseButton
                     
                 />
             )}
