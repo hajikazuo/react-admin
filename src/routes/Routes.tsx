@@ -1,7 +1,8 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { useDrawerContext } from '../shared/contexts';
 import { useEffect } from 'react';
-import { Dashboard } from '../pages';
+import { Dashboard, PostsPage } from '../pages';
+
 
 const AppRoutes: React.FC = () => {
     const { setDrawerOptions } = useDrawerContext();
@@ -12,6 +13,11 @@ const AppRoutes: React.FC = () => {
                 icon: 'home',
                 path: '/home',
                 label: 'Home',
+            },
+            {
+                icon: 'dynamic_feed',
+                path: '/posts',
+                label: 'Posts',
             }
         ]);
     }, []);
@@ -19,6 +25,7 @@ const AppRoutes: React.FC = () => {
     return (
         <Routes>
             <Route path="/home" element={<Dashboard />} />
+            <Route path="/posts" element={<PostsPage />} />
             <Route path="*" element={<Navigate to="/home" />} />
         </Routes>
     );

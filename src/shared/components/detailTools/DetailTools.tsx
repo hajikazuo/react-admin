@@ -1,4 +1,4 @@
-import { Box, Button, Divider, Icon, Paper, Skeleton, useTheme } from "@mui/material";
+import { Box, Button, Divider, Icon, Paper, Skeleton, Typography, useMediaQuery, useTheme } from "@mui/material";
 import React from "react";
 
 interface IDetailToolsProps {
@@ -43,11 +43,14 @@ export const DetailTools: React.FC<IDetailToolsProps> = ({
     whenClickingInSaveAndClose,
 }) => {
     const theme = useTheme();
+    const smDown = useMediaQuery(theme.breakpoints.down('sm'));
+    const mdDown = useMediaQuery(theme.breakpoints.down('md'));
 
     return (
         <Box
             gap={1}
             marginX={1}
+            marginY={4}
             padding={1}
             paddingX={2}
             display="flex"
@@ -63,7 +66,11 @@ export const DetailTools: React.FC<IDetailToolsProps> = ({
                     startIcon={<Icon>save</Icon>}
                     onClick={whenClickingInSave}
                 >
-                    Save
+                    {!smDown && (
+                        <Typography variant='button' whiteSpace="nowrap" textOverflow="ellipsis" overflow="hidden">
+                            Save
+                        </Typography>
+                    )}
                 </Button>
             )}
 
@@ -71,7 +78,7 @@ export const DetailTools: React.FC<IDetailToolsProps> = ({
                 <Skeleton width={110} height={60} />
             )}
 
-            {showSaveAndCloseButton && !showSaveAndCloseButtonLoading && (
+            {(showSaveAndCloseButton && !showSaveAndCloseButtonLoading && !smDown && !mdDown) && (
                 <Button
                     color='primary'
                     disableElevation
@@ -79,11 +86,13 @@ export const DetailTools: React.FC<IDetailToolsProps> = ({
                     startIcon={<Icon>save</Icon>}
                     onClick={whenClickingInSaveAndClose}
                 >
-                    Save and Back to List
+                    <Typography variant='button' whiteSpace="nowrap" textOverflow="ellipsis" overflow="hidden">
+                        Save and Back to List
+                    </Typography>
                 </Button>
             )}
 
-            {showSaveAndCloseButtonLoading && (
+            {(showSaveAndCloseButtonLoading && !smDown) && (
                 <Skeleton width={180} height={60} />
             )}
 
@@ -95,7 +104,11 @@ export const DetailTools: React.FC<IDetailToolsProps> = ({
                     startIcon={<Icon>delete</Icon>}
                     onClick={whenClickingInDelete}
                 >
-                    Delete
+                    {!smDown && (
+                        <Typography variant='button' whiteSpace="nowrap" textOverflow="ellipsis" overflow="hidden">
+                            Delete
+                        </Typography>
+                    )}
                 </Button>
             )}
 
@@ -103,7 +116,7 @@ export const DetailTools: React.FC<IDetailToolsProps> = ({
                 <Skeleton width={110} height={60} />
             )}
 
-            {showNewButton && !showNewButtonLoading && (
+            {(showNewButton && !showNewButtonLoading && !smDown) && (
                 <Button
                     color='primary'
                     disableElevation
@@ -111,15 +124,27 @@ export const DetailTools: React.FC<IDetailToolsProps> = ({
                     startIcon={<Icon>add</Icon>}
                     onClick={whenClickingInNew}
                 >
-                    {newButtonText}
+                    {!smDown && (
+                        <Typography variant='button' whiteSpace="nowrap" textOverflow="ellipsis" overflow="hidden">
+                            {newButtonText}
+                        </Typography>
+                    )}
                 </Button>
             )}
 
-            {showNewButtonLoading && (
+            {(showNewButtonLoading && !smDown) && (
                 <Skeleton width={110} height={60} />
             )}
 
-            <Divider variant='middle' orientation='vertical' />
+            {
+                (
+                    showBackButton &&
+                    (showNewButton || showDeleteButton || showSaveButton || showSaveAndCloseButton)
+                ) &&
+                (
+                    <Divider variant='middle' orientation='vertical' />
+                )
+            }
 
             {showBackButton && !showBackButtonLoading && (
                 <Button
@@ -129,7 +154,11 @@ export const DetailTools: React.FC<IDetailToolsProps> = ({
                     startIcon={<Icon>arrow_back</Icon>}
                     onClick={whenClickingInBack}
                 >
-                    Back to List
+                    {!smDown && (
+                        <Typography variant='button' whiteSpace="nowrap" textOverflow="ellipsis" overflow="hidden">
+                            Back to List
+                        </Typography>
+                    )}
                 </Button>
             )}
 
@@ -138,4 +167,4 @@ export const DetailTools: React.FC<IDetailToolsProps> = ({
             )}
         </Box>
     );
-}
+} 

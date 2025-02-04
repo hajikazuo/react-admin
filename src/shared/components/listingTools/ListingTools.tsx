@@ -24,6 +24,7 @@ export const ListingTools: React.FC<IListingToolsProps> = ({
         <Box
             gap={1}
             marginX={1}
+            marginY={4}
             padding={1}
             paddingX={2}
             display="flex"
